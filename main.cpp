@@ -1,533 +1,135 @@
 /* Calva Lorenzo Iván Eduardo
-Práctica 2 (Casa Pixel)
+Práctica 1 (Ejercicio Casa)
 VS Versión 2017
-Este programa dibuja las iniciales de Computación Gráfica y del nombre del alumno con distintas direcciones en el degradado */
+Este programa dibuja una "Tetera", este objeto esta definido
+ * en GLUT, se crea una fuente de luz, y un material */
+
+//Incluimos las librerias
+//#include <GL/glut.h>
+//#include <stdlib.h>
 #include "Main.h"
-void InitGL(GLvoid)     // Inicializamos parametros
+
+
+void init(void)
 {
-	//glShadeModel(GL_FLAT);							// Habilitamos Smooth Shading
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);				// Negro de fondo
-	//glClearDepth(1.0f);									// Configuramos Depth Buffer
-	//glEnable(GL_DEPTH_TEST);							// Habilitamos Depth Testing
-	//glDepthFunc(GL_LEQUAL);								// Tipo de Depth Testing a realizar
+	 // Ubicamos la fuente de luz en el punto (1.0, 1.0, 1.0)
+	 //GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
 
+	 // Activamos la fuente de luz
+	 glEnable(GL_LIGHTING);
+	 glEnable(GL_LIGHT0);
 
+	 glClearDepth(1.0f);					// Activamos el valor de inicio del buffer de profundidad
+	 glEnable(GL_DEPTH_TEST);				// Hacemos la prueba de profundidad
+	 glDepthFunc(GL_LEQUAL);				// Tipo de prueba de profundidad a hacer
+	 return;
 }
 
-void display(void)   // Creamos la funcion donde se dibuja
+void reshape(int w, int h)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Limpiamos pantalla y Depth Buffer	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();									// Reinicializamos la actual matriz Modelview
-
-	//Poner aqui codigo ha dibujar
-	glBegin(GL_QUADS);         //GL_PONITS (puntos), GL_LINES (lineas), GL_LINES_LOOP (unir lineas), GL_TRIANGLES (triangulo), GL_QUADS (cuadrado), GL_POLYGON (crea un poligono sin importar vertices los toma)
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-7.0f, 8.0f, 0.0f);
-	glVertex3f(-3.0f, 8.0f, 0.0f);
-	glVertex3f(-3.0f, -1.0f, 0.0f);
-	glVertex3f(-7.0f, -1.0f, 0.0f);
-
-	glColor3f(0.0f, 0.0f, 0.0f);
-	glVertex3f(-6.0f, 4.0f, 0.0f);
-	glVertex3f(-4.0f, 4.0f, 0.0f);
-	glVertex3f(-4.0f, 1.0f, 0.0f);
-	glVertex3f(-6.0f, 1.0f, 0.0f);
-
-	glColor3f(3.0f, 3.0f, 3.0f);
-	glVertex3f(-6.0f, 4.0f, 0.0f);
-	glVertex3f(-5.0f, 4.0f, 0.0f);
-	glVertex3f(-5.0f, 3.0f, 0.0f);
-	glVertex3f(-6.0f, 3.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-10.0f, 4.0f, 0.0f);
-	glVertex3f(-7.0f, 4.0f, 0.0f);
-	glVertex3f(-7.0f, 1.0f, 0.0f);
-	glVertex3f(-10.0f, 1.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-8.0f, 7.0f, 0.0f);
-	glVertex3f(-7.0f, 7.0f, 0.0f);
-	glVertex3f(-7.0f, 4.0f, 0.0f);
-	glVertex3f(-8.0f, 4.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-9.0f, 5.0f, 0.0f);
-	glVertex3f(-8.0f, 5.0f, 0.0f);
-	glVertex3f(-8.0f, 4.0f, 0.0f);
-	glVertex3f(-9.0f, 4.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-3.0f, 5.0f, 0.0f);
-	glVertex3f(-1.0f, 5.0f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	glVertex3f(-3.0f, -1.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-3.0f, 7.0f, 0.0f);
-	glVertex3f(-2.0f, 7.0f, 0.0f);
-	glVertex3f(-2.0f, 5.0f, 0.0f);
-	glVertex3f(-3.0f, 5.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-9.0f, 1.0f, 0.0f);
-	glVertex3f(-7.0f, 1.0f, 0.0f);
-	glVertex3f(-7.0f, 0.0f, 0.0f);
-	glVertex3f(-9.0f, 0.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-1.0f, 3.0f, 0.0f);
-	glVertex3f(0.0f, 3.0f, 0.0f);
-	glVertex3f(-0.0f, -3.0f, 0.0f);
-	glVertex3f(-1.0f, -3.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-2.0f, -2.0f, 0.0f);
-	glVertex3f(-1.0f, -2.0f, 0.0f);
-	glVertex3f(-1.0f, -3.0f, 0.0f);
-	glVertex3f(-2.0f, -3.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-4.0f, -1.0f, 0.0f);
-	glVertex3f(-2.0f, -1.0f, 0.0f);
-	glVertex3f(-2.0f, -2.0f, 0.0f);
-	glVertex3f(-4.0f, -2.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	glVertex3f(2.0f, 0.0f, 0.0f);
-	glVertex3f(2.0f, -6.0f, 0.0f);
-	glVertex3f(0.0f, -6.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(0.0f, -6.0f, 0.0f);
-	glVertex3f(1.0f, -6.0f, 0.0f);
-	glVertex3f(1.0f, -8.0f, 0.0f);
-	glVertex3f(0.0f, -8.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(2.0f, -2.0f, 0.0f);
-	glVertex3f(3.0f, -2.0f, 0.0f);
-	glVertex3f(3.0f, -5.0f, 0.0f);
-	glVertex3f(2.0f, -5.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(4.0f, -1.0f, 0.0f);
-	glVertex3f(6.0f, -1.0f, 0.0f);
-	glVertex3f(6.0f, -3.0f, 0.0f);
-	glVertex3f(4.0f, -3.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(5.0f, 0.0f, 0.0f);
-	glVertex3f(7.0f, 0.0f, 0.0f);
-	glVertex3f(7.0f, -1.0f, 0.0f);
-	glVertex3f(5.0f, -1.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(6.0f, 1.0f, 0.0f);
-	glVertex3f(7.0f, 1.0f, 0.0f);
-	glVertex3f(7.0f, 0.0f, 0.0f);
-	glVertex3f(6.0f, 0.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(4.0f, -3.0f, 0.0f);
-	glVertex3f(5.0f, -3.0f, 0.0f);
-	glVertex3f(5.0f, -4.0f, 0.0f);
-	glVertex3f(4.0f, -4.0f, 0.0f);
-
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(7.0f, 4.0f, 0.0f);
-	glVertex3f(8.0f, 4.0f, 0.0f);
-	glVertex3f(8.0f, 2.0f, 0.0f);
-	glVertex3f(7.0f, 2.0f, 0.0f);
-	
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(6.0f, 3.0f, 0.0f);
-	glVertex3f(7.0f, 3.0f, 0.0f);
-	glVertex3f(7.0f, 1.0f, 0.0f);
-	glVertex3f(6.0f, 1.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(7.0f, 5.0f, 0.0f);
-	glVertex3f(8.0f, 5.0f, 0.0f);
-	glVertex3f(8.0f, 4.0f, 0.0f);
-	glVertex3f(7.0f, 4.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(6.0f, 4.0f, 0.0f);
-	glVertex3f(7.0f, 4.0f, 0.0f);
-	glVertex3f(7.0f, 3.0f, 0.0f);
-	glVertex3f(6.0f, 3.0f, 0.0f);
-
-	glColor3f(3.0f, 0.0f, 0.0f);
-	glVertex3f(8.0f, 5.0f, 0.0f);
-	glVertex3f(9.0f, 5.0f, 0.0f);
-	glVertex3f(9.0f, 2.0f, 0.0f);
-	glVertex3f(8.0f, 2.0f, 0.0f);
-
-	glColor3f(3.0f, 0.0f, 0.0f);
-	glVertex3f(7.0f, 7.0f, 0.0f);
-	glVertex3f(8.0f, 7.0f, 0.0f);
-	glVertex3f(8.0f, 5.0f, 0.0f);
-	glVertex3f(7.0f, 5.0f, 0.0f);
-
-	glColor3f(3.0f, 0.0f, 0.0f);
-	glVertex3f(6.0f, 8.0f, 0.0f);
-	glVertex3f(7.0f, 8.0f, 0.0f);
-	glVertex3f(7.0f, 4.0f, 0.0f);
-	glVertex3f(6.0f, 4.0f, 0.0f);
-
-	glColor3f(3.0f, 0.0f, 0.0f);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-	glVertex3f(6.0f, 5.0f, 0.0f);
-	glVertex3f(6.0f, 2.0f, 0.0f);
-	glVertex3f(5.0f, 2.0f, 0.0f);
-
-	glColor3f(3.0f, 0.5f, 0.08f);
-	glVertex3f(-1.0f, -4.0f, 0.0f);
-	glVertex3f(0.0f, -4.0f, 0.0f);
-	glVertex3f(0.0f, -6.0f, 0.0f);
-	glVertex3f(-1.0f, -6.0f, 0.0f);
-	
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(-5.0f, -2.0f, 0.0f);
-	glVertex3f(-3.0f, -2.0f, 0.0f);
-	glVertex3f(-3.0f, -4.0f, 0.0f);
-	glVertex3f(-5.0f, -4.0f, 0.0f);
-
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(-3.0f, -3.0f, 0.0f);
-	glVertex3f(-2.0f, -3.0f, 0.0f);
-	glVertex3f(-2.0f, -4.0f, 0.0f);
-	glVertex3f(-3.0f, -4.0f, 0.0f);
-
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(-4.0f, -4.0f, 0.0f);
-	glVertex3f(-3.0f, -4.0f, 0.0f);
-	glVertex3f(-3.0f, -5.0f, 0.0f);
-	glVertex3f(-4.0f, -5.0f, 0.0f);
-
-	glColor3f(2.0f, 1.0f, 0.08f);
-	glVertex3f(-3.0f, -4.0f, 0.0f);
-	glVertex3f(-1.0f, -4.0f, 0.0f);
-	glVertex3f(-1.0f, -6.0f, 0.0f);
-	glVertex3f(-3.0f, -6.0f, 0.0f);
-
-	glColor3f(3.0f, 3.0f, 3.0f);
-	glVertex3f(-6.0f, -4.0f, 0.0f);
-	glVertex3f(-5.0f, -4.0f, 0.0f);
-	glVertex3f(-5.0f, -5.0f, 0.0f);
-	glVertex3f(-6.0f, -5.0f, 0.0f);
-
-	glColor3f(3.0f, 3.0f, 3.0f);
-	glVertex3f(-1.0f, -7.0f, 0.0f);
-	glVertex3f(0.0f, -7.0f, 0.0f);
-	glVertex3f(0.0f, -8.0f, 0.0f);
-	glVertex3f(-1.0f, -8.0f, 0.0f);
-
-	glColor3f(3.0f, 3.0f, 3.0f);
-	glVertex3f(1.0f, -7.0f, 0.0f);
-	glVertex3f(2.0f, -7.0f, 0.0f);
-	glVertex3f(2.0f, -8.0f, 0.0f);
-	glVertex3f(1.0f, -8.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-7.0f, 9.0f, 0.0f);
-	glVertex3f(-3.0f, 9.0f, 0.0f);
-	glVertex3f(-3.0f, 8.0f, 0.0f);
-	glVertex3f(-7.0f, 8.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-8.0f, 8.0f, 0.0f);
-	glVertex3f(-7.0f, 8.0f, 0.0f);
-	glVertex3f(-7.0f, 7.0f, 0.0f);
-	glVertex3f(-8.0f, 7.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-9.0f, 7.0f, 0.0f);
-	glVertex3f(-8.0f, 7.0f, 0.0f);
-	glVertex3f(-8.0f, 5.0f, 0.0f);
-	glVertex3f(-9.0f, 5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-10.0f, 5.0f, 0.0f);
-	glVertex3f(-9.0f, 5.0f, 0.0f);
-	glVertex3f(-9.0f, 4.0f, 0.0f);
-	glVertex3f(-10.0f, 4.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-11.0f, 4.0f, 0.0f);
-	glVertex3f(-10.0f, 4.0f, 0.0f);
-	glVertex3f(-10.0f, 1.0f, 0.0f);
-	glVertex3f(-11.0f, 1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-10.0f, 1.0f, 0.0f);
-	glVertex3f(-9.0f, 1.0f, 0.0f);
-	glVertex3f(-9.0f, 0.0f, 0.0f);
-	glVertex3f(-10.0f, 0.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-9.0f, 0.0f, 0.0f);
-	glVertex3f(-7.0f, 0.0f, 0.0f);
-	glVertex3f(-7.0f, -1.0f, 0.0f);
-	glVertex3f(-9.0f, -1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-7.0f, -1.0f, 0.0f);
-	glVertex3f(-4.0f, -1.0f, 0.0f);
-	glVertex3f(-4.0f, -2.0f, 0.0f);
-	glVertex3f(-7.0f, -2.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-6.0f, -2.0f, 0.0f);
-	glVertex3f(-5.0f, -2.0f, 0.0f);
-	glVertex3f(-5.0f, -4.0f, 0.0f);
-	glVertex3f(-6.0f, -4.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-7.0f, -4.0f, 0.0f);
-	glVertex3f(-6.0f, -4.0f, 0.0f);
-	glVertex3f(-6.0f, -5.0f, 0.0f);
-	glVertex3f(-7.0f, -5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-6.0f, -5.0f, 0.0f);
-	glVertex3f(-3.0f, -5.0f, 0.0f);
-	glVertex3f(-3.0f, -6.0f, 0.0f);
-	glVertex3f(-6.0f, -6.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-5.0f, -4.0f, 0.0f);
-	glVertex3f(-4.0f, -4.0f, 0.0f);
-	glVertex3f(-4.0f, -5.0f, 0.0f);
-	glVertex3f(-5.0f, -5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-3.0f, -6.0f, 0.0f);
-	glVertex3f(0.0f, -6.0f, 0.0f);
-	glVertex3f(0.0f, -7.0f, 0.0f);
-	glVertex3f(-3.0f, -7.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-2.0f, -7.0f, 0.0f);
-	glVertex3f(-1.0f, -7.0f, 0.0f);
-	glVertex3f(-1.0f, -8.0f, 0.0f);
-	glVertex3f(-2.0f, -8.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-1.0f, -8.0f, 0.0f);
-	glVertex3f(2.0f, -8.0f, 0.0f);
-	glVertex3f(2.0f, -9.0f, 0.0f);
-	glVertex3f(-1.0f, -9.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(1.0f, -6.0f, 0.0f);
-	glVertex3f(2.0f, -6.0f, 0.0f);
-	glVertex3f(2.0f, -7.0f, 0.0f);
-	glVertex3f(1.0f, -7.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(2.0f, -5.0f, 0.0f);
-	glVertex3f(3.0f, -5.0f, 0.0f);
-	glVertex3f(3.0f, -8.0f, 0.0f);
-	glVertex3f(2.0f, -8.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(3.0f, -1.0f, 0.0f);
-	glVertex3f(4.0f, -1.0f, 0.0f);
-	glVertex3f(4.0f, -6.0f, 0.0f);
-	glVertex3f(3.0f, -6.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(2.0f, 0.0f, 0.0f);
-	glVertex3f(3.0f, 0.0f, 0.0f);
-	glVertex3f(3.0f, -2.0f, 0.0f);
-	glVertex3f(2.0f, -2.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(4.0f, 0.0f, 0.0f);
-	glVertex3f(5.0f, 0.0f, 0.0f);
-	glVertex3f(5.0f, -1.0f, 0.0f);
-	glVertex3f(4.0f, -1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(4.0f, -4.0f, 0.0f);
-	glVertex3f(5.0f, -4.0f, 0.0f);
-	glVertex3f(5.0f, -5.0f, 0.0f);
-	glVertex3f(4.0f, -5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(5.0f, -3.0f, 0.0f);
-	glVertex3f(6.0f, -3.0f, 0.0f);
-	glVertex3f(6.0f, -4.0f, 0.0f);
-	glVertex3f(5.0f, -4.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(6.0f, -1.0f, 0.0f);
-	glVertex3f(7.0f, -1.0f, 0.0f);
-	glVertex3f(7.0f, -3.0f, 0.0f);
-	glVertex3f(6.0f, -3.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(7.0f, 2.0f, 0.0f);
-	glVertex3f(8.0f, 2.0f, 0.0f);
-	glVertex3f(8.0f, -1.0f, 0.0f);
-	glVertex3f(7.0f, -1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(8.0f, 2.0f, 0.0f);
-	glVertex3f(9.0f, 2.0f, 0.0f);
-	glVertex3f(9.0f, 1.0f, 0.0f);
-	glVertex3f(8.0f, 1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(9.0f, 5.0f, 0.0f);
-	glVertex3f(10.0f, 5.0f, 0.0f);
-	glVertex3f(10.0f, 2.0f, 0.0f);
-	glVertex3f(9.0f, 2.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(8.0f, 7.0f, 0.0f);
-	glVertex3f(9.0f, 7.0f, 0.0f);
-	glVertex3f(9.0f, 5.0f, 0.0f);
-	glVertex3f(8.0f, 5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(7.0f, 8.0f, 0.0f);
-	glVertex3f(8.0f, 8.0f, 0.0f);
-	glVertex3f(8.0f, 7.0f, 0.0f);
-	glVertex3f(7.0f, 7.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(6.0f, 9.0f, 0.0f);
-	glVertex3f(7.0f, 9.0f, 0.0f);
-	glVertex3f(7.0f, 8.0f, 0.0f);
-	glVertex3f(6.0f, 8.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(5.0f, 8.0f, 0.0f);
-	glVertex3f(6.0f, 8.0f, 0.0f);
-	glVertex3f(6.0f, 5.0f, 0.0f);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(4.0f, 5.0f, 0.0f);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-	glVertex3f(5.0f, 2.0f, 0.0f);
-	glVertex3f(4.0f, 2.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(5.0f, 2.0f, 0.0f);
-	glVertex3f(6.0f, 2.0f, 0.0f);
-	glVertex3f(6.0f, 0.0f, 0.0f);
-	glVertex3f(5.0f, 0.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(2.0f, 1.0f, 0.0f);
-	glVertex3f(2.0f, 0.0f, 0.0f);
-	glVertex3f(1.0f,0.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(0.0f, 3.0f, 0.0f);
-	glVertex3f(1.0f, 3.0f, 0.0f);
-	glVertex3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(0.0f, 1.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-1.0f, 5.0f, 0.0f);
-	glVertex3f(0.0f, 5.0f, 0.0f);
-	glVertex3f(0.0f, 3.0f, 0.0f);
-	glVertex3f(-1.0f, 3.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-2.0f, 7.0f, 0.0f);
-	glVertex3f(-1.0f, 7.0f, 0.0f);
-	glVertex3f(-1.0f, 5.0f, 0.0f);
-	glVertex3f(-2.0f, 5.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-3.0f, 8.0f, 0.0f);
-	glVertex3f(-2.0f, 8.0f, 0.0f);
-	glVertex3f(-2.0f, 7.0f, 0.0f);
-	glVertex3f(-3.0f, 7.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-2.0f, -3.0f, 0.0f);
-	glVertex3f(0.0f, -3.0f, 0.0f);
-	glVertex3f(0.0f, -4.0f, 0.0f);
-	glVertex3f(-2.0f, -4.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-3.0f, -2.0f, 0.0f);
-	glVertex3f(-2.0f, -2.0f, 0.0f);
-	glVertex3f(-2.0f, -3.0f, 0.0f);
-	glVertex3f(-3.0f, -3.0f, 0.0f);
-
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	glVertex3f(-2.0f, -1.0f, 0.0f);
-	glVertex3f(-2.0f, -2.0f, 0.0f);
-	glVertex3f(-1.0f, -2.0f, 0.0f);
-
-	glEnd();
-
-
-
-	glFlush();
+	 if (!h)
+		return;
+
+	 glViewport(0, 0,  (GLsizei) w, (GLsizei) h);
+	 // Activamos la matriz de proyeccion.
+	 glMatrixMode(GL_PROJECTION);
+	 // "limpiamos" esta con la matriz identidad.
+	 glLoadIdentity();
+	 // Usamos proyeccion ortogonal
+	  //glOrtho(-200, 200, -200, 200, -200, 200);
+	 gluPerspective(30.0f, (GLfloat)800/(GLfloat)600, 0.03, 1000.0);
+	 // Activamos la matriz de modelado/visionado. 
+	 glMatrixMode(GL_MODELVIEW);
+	 // "Limpiamos" la matriz
+	 glLoadIdentity();
+	 return;
 }
 
-void reshape(int width, int height)   // Creamos funcion Reshape
-{
-	if (height == 0)										// Prevenir division entre cero
-	{
-		height = 1;
-	}
+// Aqui ponemos lo que queremos dibujar.
+void display(void)
+{ 
+	 // Propiedades del material
+	 GLfloat mat_ambient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	 GLfloat mat_diffuse[] = { 0.1f, 0.5f, 0.8f, 1.0f };
+	 GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	 GLfloat mat_shininess[] = { 100.0f };
 
-	glViewport(0, 0, width, height);
+	 // "Limpiamos" el frame buffer con el color de "Clear", en este 
+	 // caso negro. 
+	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glMatrixMode(GL_PROJECTION);						// Seleccionamos Projection Matrix
-	glLoadIdentity();
+	 glMatrixMode( GL_MODELVIEW_MATRIX );
+	 glLoadIdentity();
+ 
+	 glTranslatef(0.0,0.0,-20.0);
+	 // Rotacion de 30 grados en torno al eje x
+	 glRotated(30.0, 1.0, 0.0, 0.0);
+	 // Rotacion de -30 grados en torno al eje y
+	 //glRotated(-30.0, 0.0, 1.0, 0.0);
+	 glRotated(-30, 0.0, 1.0, 0.0);
+	 // Dibujamos una "Tetera" y le aplico el material
 
-	// Ortogonal
-	glOrtho(-15, 15, -15, 15, -1, 2);
+	 glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+	 glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	 glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	 glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	 glutSolidTeapot(1.0);
+	 //glutWireCube(2.0f);
 
-	glMatrixMode(GL_MODELVIEW);							// Seleccionamos Modelview Matrix
-	glLoadIdentity();
-}
+	 //glFlush();
+	 glutSwapBuffers ( );
+	 return;
+} 
 
 // Termina la ejecucion del programa cuando se presiona ESC
 void keyboard(unsigned char key, int x, int y)
 {
-	switch (key)
-	{
-	case 27: exit(0);
-		break;
-	}
-	glutPostRedisplay();
+	 switch (key) 
+	 {
+		case 27: exit(0);
+				 break;
+
+		case 'x':
+			//rot += 10;
+			break;
+	 }
+	  glutPostRedisplay();
+	  return;
+}    
+
+// Main del programa.
+int main(int argc, char **argv)
+{ 
+	 // Inicializo OpenGL
+	 glutInit(&argc, argv);
+	 
+	 // Activamos buffer simple y colores del tipo RGB  
+	 //glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB| GLUT_DEPTH);
+	 glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB| GLUT_DEPTH);
+
+	 // Definimos una ventana de medidas 300 x 300 como ventana 
+	 // de visualizacion en pixels
+	 glutInitWindowSize (300, 300);
+	 
+	 // Posicionamos la ventana en la esquina superior izquierda de 
+	 // la pantalla.
+	 glutInitWindowPosition (0, 0);
+
+	 // Creamos literalmente la ventana y le adjudicamos el nombre que se
+	 // observara en su barra de titulo.
+	 glutCreateWindow ("HomeCLIE");
+
+	 // Inicializamos el sistema 
+	 init();
+
+	 glutDisplayFunc(display); 
+	 glutReshapeFunc(reshape);
+	 glutKeyboardFunc(keyboard);
+	 glutMainLoop();
+	 
+	 // ANSI C requiere que main retorne un valor entero.
+	 return 0;
 }
 
-int main(int argc, char** argv)   // Main Function
-{
-	glutInit(&argc, argv); // Inicializamos OpenGL
-	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE); // Display Mode (Clores RGB y alpha | Buffer Sencillo )
-	glutInitWindowSize(500, 500);	// Tamaño de la Ventana
-	glutInitWindowPosition(0, 0);	//Posicion de la Ventana
-	glutCreateWindow("Practica 2 (Pixel)"); // Nombre de la Ventana
-	InitGL();						// Parametros iniciales de la aplicacion
-	glutDisplayFunc(display);  //Indicamos a Glut función de dibujo
-	glutReshapeFunc(reshape);	//Indicamos a Glut función en caso de cambio de tamano
-	glutKeyboardFunc(keyboard);	//Indicamos a Glut función de manejo de teclado
-	glutMainLoop();          // 
 
-	return 0;
-}
+
